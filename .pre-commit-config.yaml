@@ -1,12 +1,28 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.0.1  # Use the latest version
+    rev: v4.6.0
     hooks:
-      - id: trailing-whitespace
       - id: end-of-file-fixer
+      - id: trailing-whitespace
       - id: check-yaml
-      - id: check-added-large-files
+
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.11.2
+    hooks:
+      - id: mypy
+
   - repo: https://github.com/psf/black
-    rev: 23.3.0  # Use the latest version of Black
+    rev: 24.8.0  # Use the latest version or a specific one
     hooks:
       - id: black
+        language_version: python3
+
+  - repo: local
+    hooks:
+      - id: run-tests
+        name: Run Django Tests
+        entry: pytest
+        language: system
+        types: [python]
+        pass_filenames: false
